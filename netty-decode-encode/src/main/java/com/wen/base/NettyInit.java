@@ -14,6 +14,7 @@ import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.FixedLengthFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
 
 import java.nio.charset.Charset;
 
@@ -41,13 +42,15 @@ public class NettyInit {
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
-                        public void initChannel(SocketChannel ch) throws Exception {
-                            Charset gbk = Charset.forName("gbk");
+                        public void initChannel(SocketChannel ch){
+//                            Charset gbk = Charset.forName("gbk");
                             //使用官方提供的编码器和解码器
 //                            ch.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, Unpooled.copiedBuffer("_".getBytes())));
+                            //使用官方提供的心跳机制
+                            ch.pipeline().addLast(new IdleStateHandler(2, 2, 5));
+                            //自定义心跳触发事件
+                            ch.pipeline().addLast(new CustomHeartBeat());
                             ch.pipeline().addLast(new CustomDecoder());
-                            ch.pipeline().addLast("decoder", new StringDecoder(gbk));
-                            ch.pipeline().addLast("encoder", new StringEncoder(gbk));
                             ch.pipeline().addLast(new NettySimpleChat());
                         }
                     })
