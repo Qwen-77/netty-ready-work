@@ -10,6 +10,7 @@
     <modules>
         <module>netty-decode-encode</module>
         <module>common-api</module>
+        <module>netty-upload-file</module>
     </modules>
 
     <properties>
@@ -27,5 +28,11 @@
             <version>${netty.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
     </dependencies>
 </project>

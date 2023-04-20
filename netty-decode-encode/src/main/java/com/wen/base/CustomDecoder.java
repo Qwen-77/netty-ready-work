@@ -38,7 +38,7 @@ public class CustomDecoder extends ByteToMessageDecoder {
 
     /**
      * 实现解码方法
-     * 十分精妙 建议通读
+     * 十分精妙 建议通读 list表示传递给下一个handler的msg是什么
      * @author 7wen
      * @date 2023-04-19 17:18
      */
