@@ -11,6 +11,7 @@
         <module>netty-decode-encode</module>
         <module>common-api</module>
         <module>netty-upload-file</module>
+        <module>netty-personal-protocol</module>
     </modules>
 
     <properties>
