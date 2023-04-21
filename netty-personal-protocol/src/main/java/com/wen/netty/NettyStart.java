@@ -1,6 +1,8 @@
 package com.wen.netty;
 
+import com.wen.entity.NettyYamlConfig;
 import com.wen.netty.base.NettyInit;
+import com.wen.utils.ApplicationYamlUtil;
 
 /**
  * @author: 7wen
@@ -9,6 +11,6 @@ import com.wen.netty.base.NettyInit;
  */
 public class NettyStart {
     public static void main(String[] args) {
-        new NettyInit(8080);
+        new NettyInit(ApplicationYamlUtil.transYamlToClass().getIm());
     }
 }

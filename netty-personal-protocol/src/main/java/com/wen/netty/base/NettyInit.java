@@ -1,5 +1,6 @@
 package com.wen.netty.base;
 
+import com.wen.entity.NettyYamlConfig;
 import com.wen.netty.service.NettyPersonalProtocolServiceHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -13,9 +14,9 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  */
 public class NettyInit {
 
-    public NettyInit(int port) {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workGroup = new NioEventLoopGroup();
+    public NettyInit(NettyYamlConfig.TcpConfig tcpConfig) {
+        EventLoopGroup bossGroup = new NioEventLoopGroup(tcpConfig.getBossThreadSize());
+        EventLoopGroup workGroup = new NioEventLoopGroup(tcpConfig.getWorkThreadSize());
 
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
@@ -31,7 +32,7 @@ public class NettyInit {
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-            ChannelFuture f = serverBootstrap.bind(port).sync();
+            ChannelFuture f = serverBootstrap.bind(tcpConfig.getTcpPort()).sync();
 
             f.channel().closeFuture().sync();
 

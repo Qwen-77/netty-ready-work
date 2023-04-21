@@ -1,0 +1,6 @@
+im:
+  socketPort: 9001
+  tcpPort: 9002
+  bossThreadSize: 1
+  workThreadSize: 1
+  heartBeatTime: 3000
