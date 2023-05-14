@@ -2,8 +2,8 @@ package com.wen.netty.service;
 
 import com.wen.entity.PersonalProtocolDto;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.util.AttributeKey;
 
 /**
  * @author: 7wen

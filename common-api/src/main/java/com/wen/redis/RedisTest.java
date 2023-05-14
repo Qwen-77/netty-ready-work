@@ -19,7 +19,14 @@ public class RedisTest {
         singleServerConfig.setPassword("7wen");
 
         RedissonClient redissonClient = Redisson.create(config);
-        RBucket<Object> im = redissonClient.getBucket("im");
-        im.set("test");
+//        RBucket<Object> im = redissonClient.getBucket("im");
+//        im.set("test");
+
+        // 完成Redis远程连接
+        RBucket<Object> bucket = redissonClient.getBucket("redis-test");
+//        bucket.set("redis-test-value");
+
+        //获取redis的值
+        System.out.println(bucket.get());
     }
 }
